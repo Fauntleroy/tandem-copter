@@ -18,6 +18,8 @@ $(function(){
 	var $right = $('#right');
 	var $up = $('#up');
 	var $down = $('#down');
+	// show the sweet vid
+	new NodecopterStream( document.getElementById('droneStream'), { port: 9090 } );
 	$takeoff.on( 'click', function( e ){
 		e.preventDefault();
 		socket.emit('takeoff');

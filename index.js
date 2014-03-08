@@ -5,14 +5,18 @@ var http = require('http');
 var ecstatic = require('ecstatic');
 var socket_io = require('socket.io');
 var ar_drone = require('ar-drone');
+var dronestream = require('dronestream');
 
 var copter  = ar_drone.createClient();
 var ecstatic_server = ecstatic({
 	root: __dirname +'/assets'
 });
 var server = http.createServer( ecstatic_server );
+var dronestream_server = http.createServer();
 var io = socket_io.listen( server );
+dronestream.listen( dronestream_server );
 server.listen( 8080 );
+dronestream_server.listen( 9090 );
 
 io.sockets.on( 'connection', function( socket ){
 	console.log('socket connected');

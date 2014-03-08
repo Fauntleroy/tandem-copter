@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" href="/compiled/styles.css" />
+	<link rel="stylesheet" href="/compiled/index.css" />
+	<script src="http://localhost:9090/dronestream/nodecopter-client.js"></script>
 	<script src="/compiled/index.js"></script>
 </head>
 <body>
 	<div id="bot">
-		<video></video>
+		<div id="droneStream"></div>
 		<button id="takeoff">takeoff</button>
 		<button id="land">land</button>
 		<button id="stop">stop</button>
@@ -18,5 +19,9 @@
 		<button id="up">up</button>
 		<button id="down">down</button>
 	</div>
+	<script>
+	console.log(NodecopterStream);
+	</script>
+
 </body>
 </html>
