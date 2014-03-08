@@ -17,53 +17,41 @@ io.sockets.on( 'connection', function( socket ){
 	socket.on( 'takeoff', copter.takeoff.bind( copter ) );
 	socket.on( 'land', copter.land.bind( copter ) );
 	socket.on( 'stop', copter.stop.bind( copter ) );
-	var upTimer;
 	socket.on( 'up', function(){
-		clearTimeout( upTimer );
 		copter.up( 0.1 );
-		upTimer = setTimeout( function(){
-			copter.up( 0 );
-		}, 250 );
+		copter.after( 500, function(){
+			this.up( 0 );
+		});
 	});
-	var downTimer;
 	socket.on( 'down', function(){
-		clearTimeout( downTimer );
 		copter.down( 0.1 );
-		downTimer = setTimeout( function(){
-			copter.down( 0 );
-		}, 250 );
+		copter.after( 500, function(){
+			this.down( 0 );
+		});
 	});
-	var frontTimer;
 	socket.on( 'forward', function(){
-		clearTimeout( frontTimer );
 		copter.front( 0.1 );
-		frontTimer = setTimeout( function(){
-			copter.front( 0 );
-		}, 250 );
+		copter.after( 500, function(){
+			this.front( 0 );
+		});
 	});
-	var backTimer;
 	socket.on( 'backward', function(){
-		clearTimeout( backTimer );
 		copter.back( 0.1 );
-		backTimer = setTimeout( function(){
-			copter.back( 0 );
-		}, 250 );
+		copter.after( 500, function(){
+			this.back( 0 );
+		});
 	});
-	var leftTimer;
 	socket.on( 'left', function(){
-		clearTimeout( leftTimer );
 		copter.left( 0.1 );
-		leftTimer = setTimeout( function(){
-			copter.left( 0 );
-		}, 250 );
+		copter.after( 500, function(){
+			this.left( 0 );
+		});
 	});
-	var rightTimer;
 	socket.on( 'right', function(){
-		clearTimeout( rightTimer );
 		copter.right( 0.1 );
-		rightTimer = setTimeout( function(){
-			copter.right( 0 );
-		}, 250 );
+		copter.after( 500, function(){
+			this.right( 0 );
+		});
 	});
 	socket.on( 'disableEmergency', copter.disableEmergency.bind( copter ) );
 });

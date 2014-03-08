@@ -58,4 +58,30 @@ $(function(){
 		e.preventDefault();
 		socket.emit('disableEmergency');
 	});
+	$(window).on( 'keydown', function( e ){
+		switch( e.which ){
+		case 38: // up
+			if( e.shiftKey ){ // go up
+				socket.emit('up');
+			}
+			else { // go forward
+				socket.emit('forward');
+			}
+		break;
+		case 40: // down
+			if( e.shiftKey ){ // go down
+				socket.emit('down');
+			}
+			else { // go backward
+				socket.emit('backward');
+			}
+		break;
+		case 37: // left
+			socket.emit('left');
+		break;
+		case 39: // right
+			socket.emit('right');
+		break;
+		}
+	});
 });
