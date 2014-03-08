@@ -1,4 +1,5 @@
-const COMMAND_DELAY = 250;
+const COMMAND_DELAY = 1000;
+const COMMAND_POWER = 0.25;
 
 var http = require('http');
 
@@ -25,67 +26,67 @@ io.sockets.on( 'connection', function( socket ){
 	socket.on( 'stop', copter.stop.bind( copter ) );
 	socket.on( 'up', function(){
 		console.log('up');
-		copter.up( 0.1 );
-		copter.after( COMMAND_DELAY, function(){
+		copter.up( COMMAND_POWER );
+		setTimeout( function(){
 			console.log('after up');
-			this.stop();
-		});
+			copter.stop();
+		}, COMMAND_DELAY );
 	});
 	socket.on( 'down', function(){
 		console.log('down');
-		copter.down( 0.1 );
-		copter.after( COMMAND_DELAY, function(){
+		copter.down( COMMAND_POWER );
+		setTimeout( function(){
 			console.log('after down');
-			this.stop();
-		});
+			copter.stop();
+		}, COMMAND_DELAY );
 	});
 	socket.on( 'forward', function(){
 		console.log('forward');
-		copter.front( 0.1 );
-		copter.after( COMMAND_DELAY, function(){
+		copter.front( COMMAND_POWER );
+		setTimeout( function(){
 			console.log('after forward');
-			this.stop();
-		});
+			copter.stop();
+		}, COMMAND_DELAY );
 	});
 	socket.on( 'backward', function(){
 		console.log('backward');
-		copter.back( 0.1 );
-		copter.after( COMMAND_DELAY, function(){
+		copter.back( COMMAND_POWER );
+		setTimeout( function(){
 			console.log('after backward');
-			this.stop();
-		});
+			copter.stop();
+		}, COMMAND_DELAY );
 	});
 	socket.on( 'left', function(){
 		console.log('left');
-		copter.left( 0.1 );
+		copter.left( COMMAND_POWER );
 		copter.after( COMMAND_DELAY, function(){
 			console.log('after left');
-			this.stop();
+			copter.stop();
 		});
 	});
 	socket.on( 'right', function(){
 		console.log('right');
-		copter.right( 0.1 );
-		copter.after( COMMAND_DELAY, function(){
+		copter.right( COMMAND_POWER );
+		setTimeout( function(){
 			console.log('after right');
-			this.stop();
-		});
+			copter.stop();
+		}, COMMAND_DELAY );
 	});
 	socket.on( 'turnRight', function(){
 		console.log('turn right');
-		copter.clockwise( 0.1 );
-		copter.after( COMMAND_DELAY, function(){
-			console.log('after right turn');
-			this.stop();
-		});
+		copter.clockwise( COMMAND_POWER );
+		setTimeout( function(){
+			console.log('after turn right');
+			copter.stop();
+		}, COMMAND_DELAY );
 	});
 	socket.on( 'turnLeft', function(){
 		console.log('turn left');
-		copter.counterClockwise( 0.1 );
-		copter.after( COMMAND_DELAY, function(){
-			console.log('after left turn');
-			this.stop();
-		});
+		copter.counterClockwise( COMMAND_POWER );
+		setTimeout( function(){
+			console.log('after turn left');
+			copter.stop();
+		}, COMMAND_DELAY );
 	});
 	socket.on( 'disableEmergency', copter.disableEmergency.bind( copter ) );
 });
