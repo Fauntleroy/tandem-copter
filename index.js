@@ -71,5 +71,21 @@ io.sockets.on( 'connection', function( socket ){
 			this.stop();
 		});
 	});
+	socket.on( 'turnRight', function(){
+		console.log('turn right');
+		copter.clockwise( 0.1 );
+		copter.after( COMMAND_DELAY, function(){
+			console.log('after right turn');
+			this.stop();
+		});
+	});
+	socket.on( 'turnLeft', function(){
+		console.log('turn left');
+		copter.counterClockwise( 0.1 );
+		copter.after( COMMAND_DELAY, function(){
+			console.log('after left turn');
+			this.stop();
+		});
+	});
 	socket.on( 'disableEmergency', copter.disableEmergency.bind( copter ) );
 });

@@ -16,6 +16,8 @@ $(function(){
 	var $backward = $('#backward');
 	var $left = $('#left');
 	var $right = $('#right');
+	var $turnLeft = $('#turnLeft');
+	var $turnRight = $('#turnRight');
 	var $up = $('#up');
 	var $down = $('#down');
 	// show the sweet vid
@@ -48,6 +50,14 @@ $(function(){
 		e.preventDefault();
 		socket.emit('right');
 	});
+	$turnLeft.on( 'click', function( e ){
+		e.preventDefault();
+		socket.emit('turnLeft');
+	});
+	$turnRight.on( 'click', function( e ){
+		e.preventDefault();
+		socket.emit('turnRight');
+	});
 	$up.on( 'click', function( e ){
 		e.preventDefault();
 		socket.emit('up');
@@ -79,10 +89,20 @@ $(function(){
 			}
 		break;
 		case 37: // left
-			socket.emit('left');
+			if( e.shiftKey ){
+				socket.emit('turnLeft');
+			}
+			else {
+				socket.emit('left');
+			}
 		break;
 		case 39: // right
-			socket.emit('right');
+			if( e.shiftKey ){
+				socket.emit('turnRight');
+			}
+			else {
+				socket.emit('right');
+			}
 		break;
 		}
 	});
